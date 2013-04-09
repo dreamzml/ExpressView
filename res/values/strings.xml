@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ExpressView</string>
+    <string name="app_name">物流查单</string>
     <string name="menu_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="getCamara">扫一扫</string>
+    <string name="submit">提交查询</string>
 
 </resources>

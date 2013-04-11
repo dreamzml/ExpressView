@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class MainActivity extends Activity {
 	
@@ -20,6 +22,7 @@ public class MainActivity extends Activity {
 	private Spinner spinner1;
 	private TextView text1;
 	private EditText editText1;
+	private String selected="顺丰快递";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +44,15 @@ public class MainActivity extends Activity {
         spinner1.setAdapter(adapter);  
           
         //添加事件Spinner事件监听    
-   //     spinner1.setOnItemSelectedListener(new SpinnerSelectedListener()); 
+       spinner1.setOnItemSelectedListener(
+        		new SpinnerSelectedListener()
+        	); 
 		
 	    button1.setOnClickListener(new View.OnClickListener() { 
 	    	 public void onClick(View v) { 
 	    		 // Perform action on click
 	    		 String str = editText1.getText().toString();
-	    		 text1.setText("你输入的物流单号是："+str+"\n"+"正在提交，请耐心等候！");
+	    		 text1.setText("你选择的物流公司是："+selected+"\n"+"你输入的物流单号是："+str+"\n"+"正在提交，请耐心等候！");
 	    	  }         
 	     });
 
@@ -60,4 +65,20 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	class SpinnerSelectedListener implements OnItemSelectedListener {
+
+		@Override
+		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			// TODO Auto-generated method stub
+			selected =(String)m[arg2];  
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
 }

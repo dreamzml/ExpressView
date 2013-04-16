@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="getCamara">扫一扫</string>
     <string name="submit">提交查询</string>
+    <string name="test">测试网络</string>
 
 </resources>

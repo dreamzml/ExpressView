@@ -67,6 +67,9 @@ public class MainActivity extends Activity {
 		// 将adapter 添加到spinner中
 		spinner1.setAdapter(adapter);
 
+		// 输入框添加提示信息
+		editText1.setHint("请输入快递单号！");
+
 		// 添加事件Spinner事件监听
 		spinner1.setOnItemSelectedListener(new SpinnerSelectedListener());
 
@@ -74,19 +77,30 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// Perform action on click
 				String str = editText1.getText().toString();
+
+				if (str.length() < 1) {
+					Log.v("JsonTool", "物流单号为空");
+					text1.setText("物流单号为空了，请输入物流单号！");
+					return;
+				}
+
 				text1.setText("你选择的物流公司是：" + selected + "\n" + "你输入的物流单号是："
 						+ str + "\n" + "正在提交，请耐心等候！");
-				String urlString = "http://www.zda.com/json";
+
+				String urlString = "http://www.4568113.com/index.php/snoopy/searchExpress?com="
+						+ selected + "&order=" + str;
+				Log.v("JsonTool", urlString);
 				String jsonString = httpUnit.getJsonContent(urlString);
+				Log.v("JsonTool", jsonString);
 				if (jsonString != "") {
-					String str1 = jsonTool.JoinJson("--",jsonString);
+					String str1 = jsonTool.JoinJson("--", jsonString);
 					text1.setText(str1);
 				}
 			}
 		});
 		button2.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				String path = "http://cimg2.163.com/catchpic/4/44/44ED4853B4A3FE71971C885A0A22825E.jpg";
+				String path = "http://www.4568113.com/images/0A22825E.jpg";
 				try {
 					byte data[] = ImageService.getImageData(path);
 					Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0,
@@ -94,8 +108,6 @@ public class MainActivity extends Activity {
 					imageView1.setImageBitmap(bitmap);
 				} catch (Exception e) {
 					Log.e("tag", e.toString());
-					// Toast.makeText(this, R.string.error,
-					// Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -109,6 +121,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	//选择物流下拉菜单事件
 	class SpinnerSelectedListener implements OnItemSelectedListener {
 
 		@Override
@@ -116,6 +129,19 @@ public class MainActivity extends Activity {
 				long arg3) {
 			// TODO Auto-generated method stub
 			selected = (String) m[arg2];
+			if ((String) m[arg2] == "韵达快递") {
+				selected = "yunda";
+			} else if ((String) m[arg2] == "顺丰快递") {
+				selected = "shunfeng";
+			} else if ((String) m[arg2] == "圆通快递") {
+				selected = "yuantong";
+			} else if ((String) m[arg2] == "申通快递") {
+				selected = "shentong";
+			} else if ((String) m[arg2] == "天天快递") {
+				selected = "tiantian";
+			} else if ((String) m[arg2] == "EMS") {
+				selected = "ems";
+			}
 		}
 
 		@Override

@@ -26,12 +26,14 @@ public class jsonTool {
                 JSONObject oj = expressList.getJSONObject(i);  
                 aa = aa + oj.getString("time")+"\n"+oj.getString("address")+"\n\n";  
             } 
+            if(aa=="")
+            	aa = "无查询结果";
 			return aa;
 		} catch (Exception e) {
 			// 捕获异常
 			Log.e("JsonTool", e.toString());
 		}
-		return "";
+		return  "无查询结果";
 	}
 
 

@@ -26,15 +26,15 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	private static final String[] m = { "顺丰快递", "圆通快递", "申通快递", "韵达快递", "天天快递",
-			"EMS" };
+	private static final String[] m = { "中通快递", "圆通快递", "申通快递", "韵达快递", "天天快递",
+			"宅急送" };
 	private ArrayAdapter<String> adapter;
 
 	private Button button1, button2;
 	private Spinner spinner1;
 	private TextView text1;
 	private EditText editText1;
-	private String selected = "顺丰快递";
+	private String selected = "zhongtong";
 	private ImageView imageView1;
 
 	@Override
@@ -131,16 +131,16 @@ public class MainActivity extends Activity {
 			selected = (String) m[arg2];
 			if ((String) m[arg2] == "韵达快递") {
 				selected = "yunda";
-			} else if ((String) m[arg2] == "顺丰快递") {
-				selected = "shunfeng";
+			} else if ((String) m[arg2] == "中通快递") {
+				selected = "zhongtong";
 			} else if ((String) m[arg2] == "圆通快递") {
 				selected = "yuantong";
 			} else if ((String) m[arg2] == "申通快递") {
 				selected = "shentong";
 			} else if ((String) m[arg2] == "天天快递") {
 				selected = "tiantian";
-			} else if ((String) m[arg2] == "EMS") {
-				selected = "ems";
+			} else if ((String) m[arg2] == "宅急送") {
+				selected = "zhaijisong";
 			}
 		}
 
